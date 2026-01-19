@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الرافدين الإخبارية | المصدر الأول للخبر</title>
+    <style>
+        :root {
+            --primary: #c0392b;
+            --dark: #1a1a1a;
+            --gray: #f8f9fa;
+            --accent: #2980b9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .logo h1 { font-size: 40px; margin: 0; color: var(--dark); }
+        .logo span { color: var(--primary); }
+
+        /* Navigation */
+        nav {
+            background: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 12px;
+            margin: 0;
+        }
+
+        nav li { margin: 0 15px; }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        nav a:hover { color: var(--primary); }
+
+        /* Marquee */
+        .ticker {
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .ticker-label {
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* Layout */
+        .wrapper {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 25px;
+            padding: 0 15px;
+        }
+
+        .main-news { background: white; padding: 0; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .main-news img { width: 100%; height: 450px; object-fit: cover; }
+        .main-news-body { padding: 30px; }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .card { background: white; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 180px; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .card-body h4 { margin: 0 0 10px 0; color: var(--dark); line-height: 1.4; }
+
+        /* Sidebar */
+        .sidebar-title {
+            background: var(--dark);
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .list-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            display: block;
+            text-decoration: none;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .list-item:hover { color: var(--primary); }
+
+        footer { background: var(--dark); color: white; text-align: center; padding: 30px; margin-top: 40px; }
+
+        @media (max-width: 768px) {
+            .wrapper, .news-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><h1>بوابة <span>الرافدين</span></h1></div>
+    <p>الإثنين، 19 كانون الثاني 2026</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#">أخبار العراق</a></li>
+        <li><a href="#">اقتصاد</a></li>
+        <li><a href="#">أخبار العالم</a></li>
+        <li><a href="#">رياضة</a></li>
+        <li><a href="#">تكنولوجيا</a></li>
+    </ul>
+</nav>
+
+<div class="ticker">
+    <div class="ticker-label">عاجل</div>
+    <marquee scrollamount="6">
+        النزاهة تسترد مبالغ ضخمة مهربة خارج البلاد .. الأنواء الجوية تحذر من موجة أمطار غزيرة تضرب محافظات الشمال والوسط .. رئيس الوزراء يفتتح مجمعاً سكنياً جديداً لموظفي الدولة في البصرة.
+    </marquee>
+</div>
+
+<div class="wrapper">
+    <section>
+        <div class="main-news">
+            <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dee3f?auto=format&fit=crop&w=1000&q=80" alt="وزارة التربية">
+            <div class="main-news-body">
+                <h2 style="font-size: 28px; color: var(--primary);">وزارة التربية تعلن القبض على عدد من الطلبة المزورين</h2>
+                <p>أعلنت وزارة التربية اليوم أنها تمكنت من القبض على مجموعة من الطلبة الذين ثبت تزوير بياناتهم وسجلاتهم التعليمية. وأوضحت الوزارة أنها قامت بإرسال أسماء الطلبة المتورطين إلى الكليات المعنية لاتخاذ الإجراءات الإدارية اللازمة، وأضافت أن التحقيقات ما زالت مستمرة للكشف عن جميع المتورطين.</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 40px; border-right: 5px solid var(--primary); padding-right: 15px;">آخر التطورات</h3>
+        <div class="news-grid">
+            <div class="card">
+                <div class="card-body">
+                    <h4>1. العراق يعلن الاكتفاء الذاتي من المحاصيل الاستراتيجية لموسم 2026.</h4>
+                    <small>منذ ساعتين</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4>2. وزارة الإعمار: إنجاز 90% من الطريق الحولي السريع حول بغداد.</h4>
+                    <small>منذ 3 ساعات</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4>3. إطلاق المنحة الطلابية لشهر كانون الثاني في كافة الجامعات.</h4>
+                    <small>منذ 4 ساعات</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4>4. اتفاق عراقي صيني لإنشاء 5 مدن صناعية كبرى في الجنوب.</h4>
+                    <small>منذ 5 ساعات</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4>5. وزارة الصحة: العراق يسجل خلوه تماماً من شلل الأطفال للعام الخامس.</h4>
+                    <small>منذ 6 ساعات</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4>6. البنك المركزي يطلق منصة إلكترونية جديدة لتسهيل الحوالات الشخصية.</h4>
+                    <small>منذ 7 ساعات</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4>7. المنتخب الوطني يغادر إلى الدوحة لخوض مباراة ودية أمام اليابان.</h4>
+                    <small>منذ 8 ساعات</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4>8. أمانة بغداد تبدأ حملة كبرى لتشجير مداخل العاصمة وزيادة المساحات الخضراء.</h4>
+                    <small>منذ 9 ساعات</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4>9. وزارة الكهرباء: ربط محطات الطاقة الشمسية الجديدة بالشبكة الوطنية.</h4>
+                    <small>منذ 10 ساعات</small>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4>10. التعليم العالي تفتتح 3 مراكز بحثية متطورة للذكاء الاصطناعي.</h4>
+                    <small>منذ 11 ساعات</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <aside>
+        <div class="sidebar-title">أخبار متسلسلة (20 خبراً)</div>
+        <a href="#" class="list-item">11. هطول أمطار غزيرة في السليمانية تؤدي لزيادة مناسيب السدود.</a>
+        <a href="#" class="list-item">12. وزارة النفط تعلن ارتفاع صادرات نفط البصرة إلى مستويات قياسية.</a>
+        <a href="#" class="list-item">13. العمليات المشتركة: الحدود مؤمنة بالكامل بالأنظمة الحرارية الذكية.</a>
+        <a href="#" class="list-item">14. افتتاح أكبر مستشفى لعلاج الأورام في محافظة كربلاء.</a>
+        <a href="#" class="list-item">15. انخفاض ملموس في أسعار العقارات بعد افتتاح المدن الجديدة.</a>
+        <a href="#" class="list-item">16. فوز نادي القوة الجوية على الشرطة في كلاسيكو بغداد.</a>
+        <a href="#" class="list-item">17. وفد حكومي يزور واشنطن لمناقشة التعاون التكنولوجي والمصرفي.</a>
+        <a href="#" class="list-item">18. تفعيل العمل بالبطاقة التموينية الإلكترونية في عموم المحافظات.</a>
+        <a href="#" class="list-item">19. وزارة البيئة: تسجيل انخفاض في معدلات التلوث الجوي في البصرة.</a>
+        <a href="#" class="list-item">20. انطلاق مهرجان بابل الدولي بمشاركة فنانين من 15 دولة.</a>
+        <a href="#" class="list-item">21. وزارة الاتصالات: تزويد المناطق النائية بالإنترنت عبر الأقمار الصناعية.</a>
+        <a href="#" class="list-item">22. تسجيل براءة اختراع عراقية جديدة في مجال هندسة المواد.</a>
+        <a href="#" class="list-item">23. استئناف رحلات القطار السريع بين بغداد والموصل.</a>
+        <a href="#" class="list-item">24. وزارة الثقافة تطلق مشروعاً لترميم الآثار المتضررة في ذي قار.</a>
+        <a href="#" class="list-item">25. مجلس الوزراء يقرر زيادة رواتب المتقاعدين بنسبة 10%.</a>
+        <a href="#" class="list-item">26. ضبط كميات كبيرة من الأدوية المهربة في موانئ البصرة.</a>
+        <a href="#" class="list-item">27. افتتاح معرض بغداد الدولي للكتاب بمشاركة دور نشر عالمية.</a>
+        <a href="#" class="list-item">28. العتبة العلوية تطلق مشروعاً زراعياً لتوفير الخضروات بأسعار مدعومة.</a>
+        <a href="#" class="list-item">29. توقيع اتفاقية لتبادل الخبرات الأمنية مع الاتحاد الأوروبي.</a>
+        <a href="#" class="list-item">30. استقرار أسعار اللحوم في الأسواق المحلية بعد وصول شحنات مستوردة.</a>
+    </aside>
+</div>
+
+<footer>
+    <p>&copy; 2026 جميع الحقوق محفوظة لشبكة بوابة الرافدين الإخبارية</p>
+</footer>
+
+</body>
+</html>
