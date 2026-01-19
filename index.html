@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة الرافدين الإخبارية | المصدر العالمي للخبر</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Almarai:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --secondary: #1a237e;
+            --dark: #121212;
+            --light: #ffffff;
+            --gray: #f4f4f4;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            background-color: var(--gray);
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+
+        /* --- Header & Navigation --- */
+        .top-bar {
+            background: var(--dark);
+            color: white;
+            padding: 5px 50px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+
+        header {
+            background: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .search-box {
+            display: flex;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            padding: 5px;
+        }
+
+        nav {
+            background: var(--secondary);
+            padding: 0 50px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li { padding: 15px 20px; color: white; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        nav ul li:hover, nav ul li.active { background: var(--primary); }
+
+        /* --- Breaking News Ticker --- */
+        .ticker-container {
+            background: #fff;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+        }
+
+        .ticker-label {
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        .ticker-text {
+            flex: 1;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* --- Layout --- */
+        .main-container {
+            max-width: 1300px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        /* --- News Cards --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        .news-card img { width: 100%; height: 200px; object-fit: cover; }
+
+        .card-content { padding: 15px; flex-grow: 1; }
+
+        .card-category {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .card-title { font-size: 18px; margin: 10px 0; line-height: 1.4; color: var(--dark); }
+
+        /* --- Sidebar --- */
+        .sidebar-widget { background: white; padding: 20px; border-radius: 8px; margin-bottom: 25px; }
+        .widget-title { border-right: 4px solid var(--primary); padding-right: 10px; margin-bottom: 15px; font-weight: bold; }
+
+        /* --- Modal (News Detail Window) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            width: 80%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 12px;
+            overflow-y: auto;
+            position: relative;
+            padding: 30px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; left: 15px;
+            font-size: 30px; cursor: pointer; color: var(--dark);
+        }
+
+        .modal-body img { width: 100%; border-radius: 8px; margin-bottom: 20px; }
+
+        footer { background: var(--dark); color: white; text-align: center; padding: 50px; margin-top: 50px; }
+
+        @media (max-width: 768px) {
+            .main-container { grid-template-columns: 1fr; }
+            header, nav ul { flex-direction: column; padding: 10px; }
+            .top-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div id="current-date">الاثنين، 19 كانون الثاني 2026</div>
+    <div>بغداد 14°C | دولار 148,250</div>
+</div>
+
+<header>
+    <a href="#" class="logo" onclick="renderNews('الكل')">بوابة <span>الرافدين</span></a>
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="ابحث عن خبر..." onkeyup="searchNews()">
+    </div>
+</header>
+
+<nav>
+    <ul id="mainNav">
+        <li class="active" onclick="filterCategory('الكل', this)">الرئيسية</li>
+        <li onclick="filterCategory('سياسة', this)">سياسة</li>
+        <li onclick="filterCategory('اقتصاد', this)">اقتصاد</li>
+        <li onclick="filterCategory('محلي', this)">محلي</li>
+        <li onclick="filterCategory('رياضة', this)">رياضة</li>
+        <li onclick="filterCategory('تكنولوجيا', this)">تكنولوجيا</li>
+    </ul>
+</nav>
+
+<div class="ticker-container">
+    <div class="ticker-label">عاجل</div>
+    <div class="ticker-text">
+        <marquee id="breakingTicker" scrollamount="5">جاري تحميل آخر الأخبار العاجلة من بغداد والمحافظات...</marquee>
+    </div>
+</div>
+
+<div class="main-container">
+    <main>
+        <div class="news-grid" id="newsGrid">
+            </div>
+    </main>
+
+    <aside>
+        <div class="sidebar-widget">
+            <h3 class="widget-title">الأكثر قراءة</h3>
+            <div id="trendingNews"></div>
+        </div>
+        <div class="sidebar-widget" style="background: var(--secondary); color: white;">
+            <h3>نشرة البريد</h3>
+            <p>اشترك لتصلك أخبار العراق أولاً بأول.</p>
+            <input type="email" placeholder="بريدك الإلكتروني" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+            <button style="width: 100%; padding: 10px; background: var(--primary); color: white; border: none; cursor: pointer;">اشتراك</button>
+        </div>
+    </aside>
+</div>
+
+<div id="newsModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div id="modalBody" class="modal-body">
+            </div>
+    </div>
+</div>
+
+<footer>
+    <div class="logo" style="color: white; margin-bottom: 20px;">بوابة <span>الرافدين</span></div>
+    <p>جميع الحقوق محفوظة © 2026 | تصميم متطور يحاكي الوكالات العالمية</p>
+</footer>
+
+<script>
+    // قاعدة بيانات الأخبار (31 خبراً)
+    const newsData = [
+        {
+            id: 1,
+            category: "محلي",
+            title: "وزارة التربية تعلن القبض على عدد من الطلبة المزورين",
+            image: "https://images.unsplash.com/photo-1523050853063-bd388f9f79b5?w=500",
+            desc: "أعلنت وزارة التربية اليوم أنها تمكنت من القبض على مجموعة من الطلبة الذين ثبت تزوير بياناتهم وسجلاتهم التعليمية. وأوضحت الوزارة أنها قامت بإرسال أسماء الطلبة المتورطين إلى الكليات المعنية لاتخاذ الإجراءات الإدارية اللازمة، وأضافت أن التحقيقات ما زالت مستمرة للكشف عن جميع المتورطين.",
+            date: "منذ ساعة"
+        },
+        { id: 2, category: "سياسة", title: "مجلس الوزراء يقر الموازنة التكميلية لعام 2026", image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=500", desc: "قرر مجلس الوزراء في جلسته المنعقدة اليوم إقرار الموازنة التكميلية التي تركز على المشاريع الخدمية المتلكئة في المحافظات الجنوبية.", date: "منذ ساعتين" },
+        { id: 3, category: "اقتصاد", title: "ارتفاع إنتاج حقل الرميلة ليصل إلى 1.5 مليون برميل يومياً", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500", desc: "أعلنت شركة نفط البصرة عن تحقيق طفرة إنتاجية في حقل الرميلة العملاق بفضل استخدام تقنيات الحقن المائي الحديثة.", date: "منذ 3 ساعات" },
+        { id: 4, category: "تكنولوجيا", title: "إطلاق أول قمر صناعي عراقي مخصص للاتصالات في تموز المقبل", image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=500", desc: "كشفت وزارة الاتصالات عن استكمال التجهيزات لإطلاق القمر الصناعي (رافدين-1) الذي سيوفر إنترنت فائق السرعة للمناطق النائية.", date: "منذ 4 ساعات" },
+        { id: 5, category: "رياضة", title: "العراق يتصدر مجموعته في تصفيات كأس العالم 2026", image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=500", desc: "حقق أسود الرافدين فوزاً مستحقاً على منتخب كوريا الجنوبية بهدفين لهدف، ليقترب خطوة إضافية من نهائيات المونديال.", date: "منذ 5 ساعات" },
+        // ... سأقوم بتكرار هيكلية الأخبار برمجياً لتصل إلى 31
+    ];
+
+    // توليد 25 خبراً إضافياً بشكل آلي للمثال
+    const categories = ["سياسة", "اقتصاد", "محلي", "رياضة", "تكنولوجيا"];
+    for(let i=6; i<=31; i++) {
+        let cat = categories[Math.floor(Math.random() * categories.length)];
+        newsData.push({
+            id: i,
+            category: cat,
+            title: `خبر عراقي عاجل رقم ${i}: تطورات جديدة في ملف ${cat}`,
+            image: `https://picsum.photos/seed/${i+10}/500/300`,
+            desc: `هذا نص افتراضي للخبر رقم ${i}. يتناول الموضوع تفاصيل هامة تخص الشأن العراقي وتأثيراتها على المواطنين في عام 2026. ستستمر التغطية لموافاتكم بكل جديد حول هذا الملف الحساس.`,
+            date: `منذ ${i} ساعة`
+        });
+    }
+
+    // وظيفة عرض الأخبار
+    function renderNews(filter = "الكل") {
+        const grid = document.getElementById('newsGrid');
+        grid.innerHTML = "";
+        
+        const filtered = filter === "الكل" ? newsData : newsData.filter(n => n.category === filter);
+
+        filtered.forEach(news => {
+            const card = document.createElement('div');
+            card.className = 'news-card';
+            card.onclick = () => openModal(news.id);
+            card.innerHTML = `
+                <img src="${news.image}" alt="News Image">
+                <div class="card-content">
+                    <span class="card-category">${news.category}</span>
+                    <h3 class="card-title">${news.title}</h3>
+                    <small>${news.date}</small>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        // تحديث شريط العاجل بآخر 5 أخبار
+        const ticker = document.getElementById('breakingTicker');
+        ticker.innerText = newsData.slice(0, 5).map(n => n.title).join(" --- ");
+    }
+
+    // وظيفة الفلترة من المنيو
+    function filterCategory(cat, el) {
+        document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('active'));
+        el.classList.add('active');
+        renderNews(cat);
+    }
+
+    // وظيفة البحث
+    function searchNews() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const grid = document.getElementById('newsGrid');
+        grid.innerHTML = "";
+        
+        const filtered = newsData.filter(n => n.title.toLowerCase().includes(query));
+        filtered.forEach(news => {
+            const card = document.createElement('div');
+            card.className = 'news-card';
+            card.onclick = () => openModal(news.id);
+            card.innerHTML = `
+                <img src="${news.image}" alt="News Image">
+                <div class="card-content">
+                    <span class="card-category">${news.category}</span>
+                    <h3 class="card-title">${news.title}</h3>
+                    <small>${news.date}</small>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    // وظيفة فتح تفاصيل الخبر (Modal)
+    function openModal(id) {
+        const news = newsData.find(n => n.id === id);
+        const modal = document.getElementById('newsModal');
+        const body = document.getElementById('modalBody');
+        
+        body.innerHTML = `
+            <span class="card-category">${news.category}</span>
+            <h1 style="margin-top:10px">${news.title}</h1>
+            <p style="color:#666">${news.date} | بواسطة: هيئة التحرير</p>
+            <img src="${news.image}" alt="Image">
+            <div style="font-size:18px; line-height:1.8">${news.desc}</div>
+            <hr>
+            <p>كلمات مفتاحية: العراق، بغداد، أخبار ${news.category}، عاجل</p>
+        `;
+        
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden"; // منع السكرول خلف النافذة
+    }
+
+    function closeModal() {
+        document.getElementById('newsModal').style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+
+    // إغلاق النافذة عند الضغط خارجها
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('newsModal')) closeModal();
+    }
+
+    // تشغيل الموقع عند التحميل
+    window.onload = () => {
+        renderNews();
+        // ملء الشريط الجانبي بأخبار عشوائية
+        const trending = document.getElementById('trendingNews');
+        newsData.slice(10, 15).forEach(n => {
+            trending.innerHTML += `<p class="list-item" style="cursor:pointer; border-bottom:1px solid #eee; padding:5px 0" onclick="openModal(${n.id})">${n.title}</p>`;
+        });
+    }
+</script>
+
+</body>
+</html>
